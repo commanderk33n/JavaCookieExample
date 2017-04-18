@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+
     private final String userID = "SID_test";
     private final String password = "test";
 
@@ -29,6 +29,7 @@ public class LoginServlet extends HttpServlet {
         String pwd = request.getParameter("pwd");
 
         if(userID.equals(user) && password.equals(pwd)){
+            //creating simple cookie
             Cookie loginCookie = new Cookie("user",user);
             //setting cookie to expiry in 30 mins
             loginCookie.setMaxAge(30*60);
