@@ -8,7 +8,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-
 /**
  * Servlet implementation class LoginServlet
  */
@@ -26,10 +25,6 @@ public class LoginServlet extends HttpServlet {
         String pwd = request.getParameter("pwd");
 
         if(userID.equals(user) && password.equals(pwd)){
-            HttpSession session = request.getSession();
-            session.setAttribute("user", "SID_test");
-            //setting session to expiry in 30 mins
-            session.setMaxInactiveInterval(30 * 60);
             //creating simple cookie
             Cookie loginCookie = new Cookie("user",user);
             //setting cookie to expiry in 30 mins
