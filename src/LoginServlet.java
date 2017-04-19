@@ -7,10 +7,7 @@ import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
 /**
  * Servlet implementation class LoginServlet
@@ -19,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
 
     private final String userID = "SID_test";
-    private final String password = "test";
+    private final String password = "password";
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
@@ -29,6 +26,10 @@ public class LoginServlet extends HttpServlet {
         String pwd = request.getParameter("pwd");
 
         if(userID.equals(user) && password.equals(pwd)){
+            HttpSession session = request.getSession();
+            session.setAttribute("user", "SID_test");
+            //setting session to expiry in 30 mins
+            session.setMaxInactiveInterval(30 * 60);
             //creating simple cookie
             Cookie loginCookie = new Cookie("user",user);
             //setting cookie to expiry in 30 mins
